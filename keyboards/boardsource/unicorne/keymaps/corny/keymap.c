@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LT_TAB LT(LAYER_NUM, KC_TAB)
 #define LT_ENT LT(LAYER_NUM, KC_ENT)
 #define LT_ESC LT(LAYER_SYM, KC_ESC)
-#define LT_DEL LT(LAYER_SYM, KC_DEL)
+#define LT_DEL LT(LAYER_MOS, KC_DEL)
 #define TG_QWE DF(LAYER_QWERTY)
 #define TG_COL DF(LAYER_COLEMAK)
 #define TG_NAV TG(LAYER_NAV)
@@ -49,25 +49,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TG_MOS TG(LAYER_MOS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [LAYER_QWERTY] = LAYOUT_split_3x6_3(
+    [LAYER_COLEMAK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_VOLD, KC_VOLU,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LALT,    ST_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, ST_SLSH, KC_LGUI,
+      KC_LALT,    ST_Z,    KC_X,    KC_C,    KC_C,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, KC_LGUI,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            LT_ESC,  LT_TAB,  LT_SPC,    LT_BSPC,  LT_ENT, LT_DEL 
                                       //`--------------------------'  `--------------------------'
   ),
 
-    [LAYER_COLEMAK] = LAYOUT_split_3x6_3(
+    [LAYER_QWERTY] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_VOLD, KC_VOLU,
+      _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_QUOT,
+      _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,    ST_Z,    KC_X,    KC_C,    KC_C,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, KC_LGUI,
+      _______,    ST_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, ST_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LAYER_NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, XXXXXXX,  TG_QWE,  TG_COL,  TG_NAV, XXXXXXX,                       G_LEFT,  G_DOWN,    G_UP, G_RIGHT,    KC_0, XXXXXXX,
+      _______, XXXXXXX,  TG_QWE,  TG_COL,  TG_NAV, XXXXXXX,                       G_LEFT,  G_DOWN,    G_UP, G_RIGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX,  KC_APP,  C_PGUP,  C_PGDN, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
