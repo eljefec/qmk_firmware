@@ -24,7 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LAYER_NUM 3
 #define LAYER_SYM 4
 #define LAYER_MED 5
-#define LAYER_MOS 6
+#define LAYER_FUN 6
+#define LAYER_MOS 7
 
 // Composite keys
 #define C_PGDN C(KC_PGDN)
@@ -41,13 +42,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LT_TAB LT(LAYER_NUM, KC_TAB)
 #define LT_ENT LT(LAYER_MED, KC_ENT)
 #define LT_ESC LT(LAYER_SYM, KC_ESC)
-#define LT_DEL LT(LAYER_MOS, KC_DEL)
+#define LT_DEL LT(LAYER_FUN, KC_DEL)
+
+// Layer keys
 #define DF_QWE DF(LAYER_QWERTY)
 #define DF_COL DF(LAYER_COLEMAK)
 #define DF_NAV DF(LAYER_NAV)
 #define DF_NUM DF(LAYER_NUM)
 #define DF_SYM DF(LAYER_SYM)
 #define DF_MED DF(LAYER_MED)
+#define DF_FUN DF(LAYER_FUN)
 #define DF_MOS DF(LAYER_MOS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -118,6 +122,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  DF_MED, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          _______, _______, _______,    _______, _______, _______
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+    [LAYER_FUN] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      _______,  KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,                      XXXXXXX,  DF_COL,  DF_QWE, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,  KC_F11,   KC_F4,   KC_F5,   KC_F6, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,  KC_F10,   KC_F1,   KC_F2,   KC_F3, XXXXXXX,                      XXXXXXX,  DF_FUN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
