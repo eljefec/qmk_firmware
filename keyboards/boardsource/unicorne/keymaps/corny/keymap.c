@@ -34,8 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define G_RIGHT G(KC_RIGHT)
 #define G_UP G(KC_UP)
 #define G_DOWN G(KC_DOWN)
-#define ST_Z SFT_T(KC_Z)
-#define ST_SLSH SFT_T(KC_SLSH)
+#define ST_Z LSFT_T(KC_Z)
+#define ST_SLSH RSFT_T(KC_SLSH)
 #define CT_QUOT CTL_T(KC_QUOT)
 #define LT_SPC LT(LAYER_NAV, KC_SPC)
 #define LT_BSPC LT(LAYER_MOS, KC_BSPC)
@@ -167,3 +167,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 };
+
+enum combo_events {
+  EM_EMAIL,
+  COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
+
+const uint16_t PROGMEM email_combo[] = {KC_W, KC_F, KC_P, KC_H, COMBO_END};
+
+combo_t key_combos[] = {
+  [EM_EMAIL] = COMBO_ACTION(email_combo),
+};
+/* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case EM_EMAIL:
+      if (pressed) {
+        SEND_STRING("TOFILL");
+      }
+      break;
+  }
+}
