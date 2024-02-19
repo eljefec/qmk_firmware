@@ -44,6 +44,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LT_ESC LT(LAYER_SYM, KC_ESC)
 #define LT_DEL LT(LAYER_FUN, KC_DEL)
 
+// Home row mods for Colemak-DH
+#define G_MT_A GUI_T(KC_A)
+#define A_MT_R ALT_T(KC_R)
+#define C_MT_S CTL_T(KC_S)
+#define S_MT_T LSFT_T(KC_T)
+#define S_MT_N RSFT_T(KC_N)
+#define C_MT_E CTL_T(KC_E)
+#define A_MT_I ALT_T(KC_I)
+#define G_MT_O GUI_T(KC_O)
+
 // Layer keys
 #define DF_QWE DF(LAYER_QWERTY)
 #define DF_COL DF(LAYER_COLEMAK)
@@ -59,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_VOLD, KC_VOLU,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, CT_QUOT,
+      KC_LCTL,  G_MT_A,  A_MT_R,  C_MT_S,  S_MT_T,    KC_G,                         KC_M,  S_MT_N,  C_MT_E,  A_MT_I,  G_MT_O, CT_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LALT,    ST_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, KC_LGUI,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
