@@ -54,6 +54,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define A_MT_I ALT_T(KC_I)
 #define G_MT_O GUI_T(KC_O)
 
+// Home row mods for QWERTY
+#define A_MT_S ALT_T(KC_S)
+#define C_MT_D CTL_T(KC_D)
+#define S_MT_F LSFT_T(KC_F)
+#define S_MT_J RSFT_T(KC_J)
+#define C_MT_K CTL_T(KC_K)
+#define A_MT_L ALT_T(KC_L)
+#define G_MT_SCL GUI_T(KC_SCLN)
+
 // Layer keys
 #define DF_QWE DF(LAYER_QWERTY)
 #define DF_COL DF(LAYER_COLEMAK)
@@ -81,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, _______,
+      _______,  G_MT_A,  A_MT_S,  C_MT_D,  S_MT_F,    KC_G,                         KC_H,  S_MT_J,  C_MT_K,  A_MT_L,G_MT_SCL, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,    ST_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, ST_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
