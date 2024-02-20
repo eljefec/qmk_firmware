@@ -200,23 +200,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 enum combo_events {
-  EM_EMAIL,
+  EMAIL,
+  SPECIAL,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
-const uint16_t PROGMEM email_combo[] = {KC_W, KC_F, KC_P, KC_H, COMBO_END};
+const uint16_t PROGMEM email_combo[] = {KC_W, KC_F, KC_P, KC_L, COMBO_END};
+const uint16_t PROGMEM special_combo[] = {KC_W, KC_F, KC_P, KC_Y, COMBO_END};
 
 combo_t key_combos[] = {
-  [EM_EMAIL] = COMBO_ACTION(email_combo),
+  [EMAIL] = COMBO_ACTION(email_combo),
+  [SPECIAL] = COMBO_ACTION(special_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
-    case EM_EMAIL:
+    case EMAIL:
       if (pressed) {
-        SEND_STRING("TOFILL");
+        SEND_STRING("EMAIL");
+      }
+      break;
+    case SPECIAL:
+      if (pressed) {
+        SEND_STRING("SPECIAL");
       }
       break;
   }
