@@ -26,6 +26,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LAYER_MED 5
 #define LAYER_FUN 6
 #define LAYER_MOS 7
+#define LAYER_COUNT 8
+
+const char *LAYER_NAMES[LAYER_COUNT] = {
+    "COLEMAK",
+    "QWERTY",
+    "NAV",
+    "NUMBER",
+    "SYMBOL",
+    "MEDIA",
+    "FUNCTION",
+    "MOUSE"
+    };
 
 // Composite keys
 #define C_PGDN C(KC_PGDN)
@@ -213,3 +225,68 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
   }
 }
+
+#ifdef OLED_ENABLE
+void oled_write_centered(const char* data)
+{
+    static const char* prev_data = NULL;
+    if (prev_data != data)
+    {
+        oled_clear();
+        const uint8_t col = oled_max_chars() / 2 - strlen(data) / 2;
+        const uint8_t line = oled_max_lines() / 2;
+        oled_set_cursor(col, line);
+        oled_write_P(data, false);
+    }
+    prev_data = data;
+}
+
+void render_layer(void)
+{
+    const uint8_t highest_layer = get_highest_layer(layer_state | default_layer_state);
+    if (highest_layer < LAYER_COUNT)
+    {
+        oled_write_centered(LAYER_NAMES[highest_layer]);
+    }
+    else
+    {
+        oled_clear();
+    }
+}
+
+uint8_t VERSE_COUNT = 4;
+const char* VERSES[] = {
+    "Do not be anxious about anything.",
+    "Be strong and courageous.",
+    "Do not be afraid; do not be discouraged, ...",
+    "The Lord your God will be with you wherever you go."};
+
+void render_verse(void)
+{
+    static uint8_t prev_layer = LAYER_COLEMAK;
+    static uint8_t verse_index = 0;
+    const uint8_t highest_layer = get_highest_layer(layer_state | default_layer_state);
+    if (prev_layer != highest_layer)
+    {
+        verse_index++;
+        if (verse_index >= VERSE_COUNT)
+        {
+            verse_index = verse_index % VERSE_COUNT;
+        }
+        oled_write_centered(VERSES[verse_index]);
+    }
+    prev_layer = highest_layer;
+}
+
+bool oled_task_user(void) {
+    if (is_keyboard_master())
+    {
+        render_layer();
+    }
+    else
+    {
+        render_verse();
+    }
+    return false;
+}
+#endif
