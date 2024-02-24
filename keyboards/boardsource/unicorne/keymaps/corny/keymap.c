@@ -238,15 +238,24 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 
 #ifdef OLED_ENABLE
+void center_cursor_if_needed(const char* data)
+{
+    const uint32_t len = strlen(data);
+    if (len < oled_max_chars())
+    {
+        const uint8_t col = oled_max_chars() / 2 - strlen(data) / 2;
+        const uint8_t line = oled_max_lines() / 2;
+        oled_set_cursor(col, line);
+    }
+}
+
 void oled_write_centered(const char* data)
 {
     static const char* prev_data = NULL;
     if (prev_data != data)
     {
         oled_clear();
-        const uint8_t col = oled_max_chars() / 2 - strlen(data) / 2;
-        const uint8_t line = oled_max_lines() / 2;
-        oled_set_cursor(col, line);
+        center_cursor_if_needed(data);
         oled_write_P(data, false);
     }
     prev_data = data;
@@ -265,26 +274,40 @@ void render_layer(void)
     }
 }
 
-uint8_t VERSE_COUNT = 4;
 const char* VERSES[] = {
-    "Do not be anxious about anything.",
+//  "____________________________________________________________________________________", // <-- Max string without wrapping is 84 chars long
+    "Do not be anxious about anything, but in every situation, ...",
+    "by prayer and petition, with thanksgiving, present your requests to God.",
+    "And the peace of God, which transcends all understanding, ...",
+    "will guard your hearts and minds in Christ Jesus.",
+    "Finally, brothers and sisters, whatever is true, noble, right, pure, lovely, ",
+    "admirable--if anything is excellent or praiseworthy--think about such things.",
     "Be strong and courageous.",
     "Do not be afraid; do not be discouraged, ...",
-    "The Lord your God will be with you wherever you go."};
+    "for the Lord your God will be with you wherever you go.",
+    "Come to me, all you who are weary and burdened, and I will give you rest.",
+    "Take my yoke upon you and learn from me, for I am gentle and humble in heart, ...",
+    "and you will find rest for your souls."};
+uint8_t VERSE_COUNT = sizeof(VERSES) / sizeof(VERSES[0]);
+
+void render_next_verse(void)
+{
+    static uint8_t verse_index = 0;
+    verse_index++;
+    if (verse_index >= VERSE_COUNT)
+    {
+        verse_index = verse_index % VERSE_COUNT;
+    }
+    oled_write_centered(VERSES[verse_index]);
+}
 
 void render_verse(void)
 {
     static uint8_t prev_layer = LAYER_COLEMAK;
-    static uint8_t verse_index = 0;
     const uint8_t highest_layer = get_highest_layer(layer_state | default_layer_state);
     if (prev_layer != highest_layer)
     {
-        verse_index++;
-        if (verse_index >= VERSE_COUNT)
-        {
-            verse_index = verse_index % VERSE_COUNT;
-        }
-        oled_write_centered(VERSES[verse_index]);
+        render_next_verse();
     }
     prev_layer = highest_layer;
 }
