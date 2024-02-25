@@ -376,6 +376,7 @@ void render_verse(void)
     const uint8_t highest_layer = get_highest_layer(layer_state | default_layer_state);
     if (prev_layer != highest_layer)
     {
+        oled_clear();
         render_next_verse();
     }
     prev_layer = highest_layer;
