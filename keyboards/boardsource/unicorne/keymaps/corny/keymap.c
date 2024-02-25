@@ -238,40 +238,109 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 
 #ifdef OLED_ENABLE
-void center_cursor_if_needed(const char* data)
+void center_cursor_if_needed(const char* data, uint8_t line)
 {
     const uint32_t len = strlen(data);
     if (len < oled_max_chars())
     {
         const uint8_t col = oled_max_chars() / 2 - strlen(data) / 2;
-        const uint8_t line = oled_max_lines() / 2;
+        if (line >= oled_max_lines())
+        {
+            line = 0;
+        }
         oled_set_cursor(col, line);
     }
 }
 
-void oled_write_centered(const char* data)
+void oled_write_centered(const char* data, uint8_t line)
 {
     static const char* prev_data = NULL;
     if (prev_data != data)
     {
-        oled_clear();
-        center_cursor_if_needed(data);
+        center_cursor_if_needed(data, line);
         oled_write_P(data, false);
     }
     prev_data = data;
 }
 
-void render_layer(void)
+uint8_t get_my_highest_layer(void)
 {
-    const uint8_t highest_layer = get_highest_layer(layer_state | default_layer_state);
+    return get_highest_layer(layer_state | default_layer_state);
+}
+
+void render_layer(uint8_t line)
+{
+    const uint8_t highest_layer = get_my_highest_layer();
     if (highest_layer < LAYER_COUNT)
     {
-        oled_write_centered(LAYER_NAMES[highest_layer]);
+        oled_write_centered(LAYER_NAMES[highest_layer], line);
     }
     else
     {
         oled_clear();
     }
+}
+
+typedef struct
+{
+    uint8_t modMask;
+    uint8_t printBufferIndex;
+    char charWhenModActive;
+} ModMaskPrintSetting;
+
+const ModMaskPrintSetting MOD_MASK_PRINT_SETTINGS[] = {
+    {MOD_MASK_GUI, 0, 'G'},
+    {MOD_MASK_ALT, 1, 'A'},
+    {MOD_MASK_CTRL, 2, 'C'},
+    {MOD_MASK_SHIFT, 3, 'S'},
+};
+
+uint8_t get_my_mods(void)
+{
+    return get_mods() | get_oneshot_mods();
+}
+
+void render_mods(uint8_t line)
+{
+    const uint8_t mods = get_my_mods();
+    char mod_print_buffer[5];
+    const uint8_t MOD_MASK_PRINT_SETTINGS_COUNT = sizeof(MOD_MASK_PRINT_SETTINGS) / sizeof(MOD_MASK_PRINT_SETTINGS[0]);
+    for (uint8_t i = 0; i < MOD_MASK_PRINT_SETTINGS_COUNT; ++i)
+    {
+        const ModMaskPrintSetting* setting = &MOD_MASK_PRINT_SETTINGS[i];
+        if (mods & setting->modMask)
+        {
+            mod_print_buffer[setting->printBufferIndex] = setting->charWhenModActive;
+        }
+        else
+        {
+            mod_print_buffer[setting->printBufferIndex] = ' ';
+        }
+    }
+    mod_print_buffer[4] = '\0';
+
+    oled_write_centered(mod_print_buffer, line);
+}
+
+typedef struct
+{
+    uint8_t layer;
+    uint8_t mods;
+} MainRenderState;
+
+void render_main(void)
+{
+    static MainRenderState prev_state = {0, 0};
+    const uint8_t highest_layer = get_my_highest_layer();
+    const uint8_t mods = get_my_mods();
+    MainRenderState cur_state = {highest_layer, mods};
+    if (memcmp(&prev_state, &cur_state, sizeof(MainRenderState)) != 0)
+    {
+        oled_clear();
+        render_layer(1);
+        render_mods(3);
+    }
+    prev_state = cur_state;
 }
 
 const char* VERSES[] = {
@@ -298,7 +367,7 @@ void render_next_verse(void)
     {
         verse_index = verse_index % VERSE_COUNT;
     }
-    oled_write_centered(VERSES[verse_index]);
+    oled_write_centered(VERSES[verse_index], 0);
 }
 
 void render_verse(void)
@@ -315,7 +384,7 @@ void render_verse(void)
 bool oled_task_user(void) {
     if (is_keyboard_master())
     {
-        render_layer();
+        render_main();
     }
     else
     {
