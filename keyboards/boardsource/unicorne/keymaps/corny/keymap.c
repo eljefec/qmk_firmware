@@ -328,7 +328,7 @@ typedef struct
     uint8_t mods;
 } MainRenderState;
 
-void render_main(void)
+void render_layer_mods(void)
 {
     static MainRenderState prev_state = {0, 0};
     const uint8_t highest_layer = get_my_highest_layer();
@@ -370,11 +370,16 @@ void render_next_verse(void)
     oled_write_centered(VERSES[verse_index], 0);
 }
 
+bool is_base_layer(const uint8_t layer)
+{
+    return layer == LAYER_COLEMAK || layer == LAYER_QWERTY;
+}
+
 void render_verse(void)
 {
     static uint8_t prev_layer = LAYER_COLEMAK;
     const uint8_t highest_layer = get_highest_layer(layer_state | default_layer_state);
-    if (prev_layer != highest_layer)
+    if (prev_layer != highest_layer && !is_base_layer(highest_layer))
     {
         oled_clear();
         render_next_verse();
@@ -385,7 +390,7 @@ void render_verse(void)
 bool oled_task_user(void) {
     if (is_keyboard_master())
     {
-        render_main();
+        render_layer_mods();
     }
     else
     {
