@@ -49,8 +49,8 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define ST_Z LSFT_T(KC_Z)
 #define ST_SLSH RSFT_T(KC_SLSH)
 #define CT_QUOT CTL_T(KC_QUOT)
-#define LT_SPC LT(LAYER_NAV, KC_SPC)
-#define LT_BSPC LT(LAYER_MOS, KC_BSPC)
+#define LT_SPC LT(LAYER_MOS, KC_SPC)
+#define LT_BSPC LT(LAYER_NAV, KC_BSPC)
 #define LT_TAB LT(LAYER_NUM, KC_TAB)
 #define LT_ENT LT(LAYER_MED, KC_ENT)
 #define LT_ESC LT(LAYER_SYM, KC_ESC)
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        O_LALT,    ST_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, CT_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           LT_ESC,  LT_TAB,  LT_SPC,    LT_BSPC,  LT_ENT,  LT_DEL
+                                           LT_ESC,  LT_TAB, LT_BSPC,     LT_SPC,  LT_ENT,  LT_DEL
                                       //`--------------------------'  `--------------------------'
   ),
 
