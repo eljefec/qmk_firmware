@@ -49,12 +49,17 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define ST_Z LSFT_T(KC_Z)
 #define ST_SLSH RSFT_T(KC_SLSH)
 #define CT_QUOT CTL_T(KC_QUOT)
-#define LT_SPC LT(LAYER_NUM, KC_SPC)
-#define LT_BSPC LT(LAYER_NAV, KC_BSPC)
+#define LT_SPC LT(LAYER_NAV, KC_SPC)
+#define LT_BSPC LT(LAYER_NUM, KC_BSPC)
 #define LT_TAB LT(LAYER_MOS, KC_TAB)
 #define LT_ENT LT(LAYER_SYM, KC_ENT)
 #define LT_ESC LT(LAYER_MED, KC_ESC)
 #define LT_DEL LT(LAYER_FUN, KC_DEL)
+
+// Give right thumb rest
+#define MO_NUM MO(LAYER_NUM)
+#define MO_SYM MO(LAYER_SYM)
+#define MO_FUN MO(LAYER_FUN)
 
 // One-shot keys
 #define O_LGUI OSM(MOD_LGUI)
@@ -95,13 +100,13 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_COLEMAK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_VOLD, KC_VOLU,
+       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        O_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,  O_RSFT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        O_LALT,    ST_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, CT_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           LT_ESC,  LT_TAB, LT_BSPC,     LT_SPC,  LT_ENT,  LT_DEL
+                                           LT_ESC,  LT_TAB, LT_SPC,      MO_NUM,  MO_SYM,  MO_FUN
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -210,6 +215,9 @@ enum combo_events {
   EMAIL,
   SPECIAL_Y,
   SPECIAL_I,
+  UY_BSPC,
+  YSCLN_ENTER,
+  SCLNMINS_DEL,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -217,11 +225,17 @@ uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this
 const uint16_t PROGMEM email_combo[] = {KC_W, KC_F, KC_P, KC_L, COMBO_END};
 const uint16_t PROGMEM special_y_combo[] = {KC_W, KC_F, KC_P, KC_Y, COMBO_END};
 const uint16_t PROGMEM special_i_combo[] = {KC_W, KC_F, KC_P, KC_I, COMBO_END};
+const uint16_t PROGMEM uy_combo[] = {KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM yscln_combo[] = {KC_Y, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM sclnmins_combo[] = {KC_SCLN, KC_MINS, COMBO_END};
 
 combo_t key_combos[] = {
   [EMAIL] = COMBO_ACTION(email_combo),
   [SPECIAL_Y] = COMBO_ACTION(special_y_combo),
   [SPECIAL_I] = COMBO_ACTION(special_i_combo),
+  [UY_BSPC] = COMBO(uy_combo, KC_BSPC),
+  [YSCLN_ENTER] = COMBO(yscln_combo, KC_ENT),
+  [SCLNMINS_DEL] = COMBO(sclnmins_combo, KC_DEL),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
