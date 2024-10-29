@@ -215,9 +215,9 @@ enum combo_events {
   EMAIL,
   SPECIAL_Y,
   SPECIAL_I,
-  UY_BSPC,
-  YSCLN_ENTER,
-  SCLNMINS_DEL,
+  UY,
+  YSCLN,
+  COMMDOT,
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
@@ -227,15 +227,15 @@ const uint16_t PROGMEM special_y_combo[] = {KC_W, KC_F, KC_P, KC_Y, COMBO_END};
 const uint16_t PROGMEM special_i_combo[] = {KC_W, KC_F, KC_P, KC_I, COMBO_END};
 const uint16_t PROGMEM uy_combo[] = {KC_U, KC_Y, COMBO_END};
 const uint16_t PROGMEM yscln_combo[] = {KC_Y, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM sclnmins_combo[] = {KC_SCLN, KC_MINS, COMBO_END};
+const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
   [EMAIL] = COMBO_ACTION(email_combo),
   [SPECIAL_Y] = COMBO_ACTION(special_y_combo),
   [SPECIAL_I] = COMBO_ACTION(special_i_combo),
-  [UY_BSPC] = COMBO(uy_combo, KC_BSPC),
-  [YSCLN_ENTER] = COMBO(yscln_combo, KC_ENT),
-  [SCLNMINS_DEL] = COMBO(sclnmins_combo, KC_DEL),
+  [UY] = COMBO(uy_combo, KC_BSPC),
+  [YSCLN] = COMBO(yscln_combo, KC_DEL),
+  [COMMDOT] = COMBO(commdot_combo, KC_ENT),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
