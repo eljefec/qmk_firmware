@@ -16,3 +16,6 @@
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 #define OLED_TIMEOUT 20000
+
+// Make combos work from the same key positions on all layers
+#define COMBO_ONLY_FROM_LAYER 0
