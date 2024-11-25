@@ -40,8 +40,8 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
     };
 
 // Composite keys
-#define C_PGDN C(KC_PGDN)
-#define C_PGUP C(KC_PGUP)
+#define N_TB C(KC_TAB)
+#define P_TB RCS(KC_TAB)
 #define G_LEFT G(KC_LEFT)
 #define G_RIGHT G(KC_RIGHT)
 #define G_UP G(KC_UP)
@@ -152,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  O_LGUI,  O_LALT,  O_LCTL,  O_LSFT, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX,  KC_APP,  C_PGUP,  C_PGDN, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, XXXXXXX,
+      _______, XXXXXXX,  KC_APP,    P_TB,    N_TB, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL,                      XXXXXXX,  O_LSFT,  O_LCTL,  O_LALT,  O_LGUI, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_BSLS,    KC_1,    KC_2,    KC_3,  KC_GRV,                      XXXXXXX,  C_PGUP,  C_PGDN, XXXXXXX, XXXXXXX, _______,
+      XXXXXXX, KC_BSLS,    KC_1,    KC_2,    KC_3,  KC_GRV,                      XXXXXXX,    P_TB,    N_TB, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            KC_DOT,    KC_0, KC_MINS,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
