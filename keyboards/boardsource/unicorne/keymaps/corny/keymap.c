@@ -53,11 +53,11 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define LT_BSPC LT(LAYER_NUM, KC_BSPC)
 #define LT_TAB LT(LAYER_MOS, KC_TAB)
 #define LT_ENT LT(LAYER_SYM, KC_ENT)
-#define LT_ESC LT(LAYER_MED, KC_ESC)
 #define LT_DEL LT(LAYER_FUN, KC_DEL)
 #define LT_SPCNM LT(LAYER_NUM, KC_SPC)
 
-// Give right thumb rest
+// Give thumbs rest
+#define MO_MED MO(LAYER_MED)
 #define MO_SYM MO(LAYER_SYM)
 #define MO_FUN MO(LAYER_FUN)
 
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        O_LALT,    ST_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, CT_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           LT_ESC,  LT_TAB,LT_SPCNV,   LT_SPCNM,  MO_SYM,  MO_FUN
+                                           MO_MED,  LT_TAB,LT_SPCNV,   LT_SPCNM,  MO_SYM,  MO_FUN
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -215,6 +215,8 @@ enum combo_events {
   EMAIL,
   SPECIAL_Y,
   SPECIAL_I,
+  QW,
+  WF,
   UY,
   YSCLN,
   COMMDOT,
@@ -225,6 +227,8 @@ uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this
 const uint16_t PROGMEM email_combo[] = {KC_W, KC_F, KC_P, KC_L, COMBO_END};
 const uint16_t PROGMEM special_y_combo[] = {KC_W, KC_F, KC_P, KC_Y, COMBO_END};
 const uint16_t PROGMEM special_i_combo[] = {KC_W, KC_F, KC_P, KC_I, COMBO_END};
+const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM wf_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM uy_combo[] = {KC_U, KC_Y, COMBO_END};
 const uint16_t PROGMEM yscln_combo[] = {KC_Y, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
@@ -233,6 +237,8 @@ combo_t key_combos[] = {
   [EMAIL] = COMBO_ACTION(email_combo),
   [SPECIAL_Y] = COMBO_ACTION(special_y_combo),
   [SPECIAL_I] = COMBO_ACTION(special_i_combo),
+  [QW] = COMBO(qw_combo, KC_ESC),
+  [WF] = COMBO(wf_combo, KC_TAB),
   [UY] = COMBO(uy_combo, KC_BSPC),
   [YSCLN] = COMBO(yscln_combo, KC_DEL),
   [COMMDOT] = COMBO(commdot_combo, KC_ENT),
