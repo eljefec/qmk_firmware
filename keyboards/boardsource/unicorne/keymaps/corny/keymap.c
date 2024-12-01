@@ -26,7 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LAYER_MED 5
 #define LAYER_FUN 6
 #define LAYER_MOS 7
-#define LAYER_COUNT 8
+#define LAYER_BUTT 8
+#define LAYER_COUNT 9
 
 const char *LAYER_NAMES[LAYER_COUNT] = {
     "COLEMAK",
@@ -36,7 +37,8 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
     "SYMBOL",
     "MEDIA",
     "FUNCTION",
-    "MOUSE"
+    "MOUSE",
+    "BUTTON"
     };
 
 // Composite keys
@@ -46,8 +48,8 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define G_RIGHT G(KC_RIGHT)
 #define G_UP G(KC_UP)
 #define G_DOWN G(KC_DOWN)
-#define ST_Z LSFT_T(KC_Z)
-#define ST_SLSH RSFT_T(KC_SLSH)
+#define BUTT_Z LT(LAYER_BUTT, KC_Z)
+#define BUTT_SL LT(LAYER_BUTT, KC_SLSH)
 #define CT_QUOT CTL_T(KC_QUOT)
 #define LT_SPCNV LT(LAYER_NAV, KC_SPC)
 #define LT_BSPC LT(LAYER_NUM, KC_BSPC)
@@ -67,6 +69,13 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define O_LCTL OSM(MOD_LCTL)
 #define O_LSFT OSM(MOD_LSFT)
 #define O_RSFT OSM(MOD_RSFT)
+
+// Button layer
+#define K_UNDO C(KC_Z)
+#define K_CUT C(KC_X)
+#define K_COPY C(KC_C)
+#define K_PAST C(KC_V)
+#define K_REDO C(KC_Y)
 
 // Home row mods for Colemak-DH
 #define G_MT_A GUI_T(KC_A)
@@ -104,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        O_LSFT,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,  O_RSFT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       O_LALT,    ST_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, ST_SLSH, CT_QUOT,
+       O_LALT,  BUTT_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, BUTT_SL, CT_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            MO_MED,  LT_TAB,LT_SPCNV,   LT_SPCNM,  MO_SYM,  MO_FUN
                                       //`--------------------------'  `--------------------------'
@@ -116,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,    ST_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, ST_SLSH, _______,
+      _______, _______,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -192,8 +201,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
-  )
+  ),
 
+    [LAYER_BUTT] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      _______,  K_UNDO,   K_CUT,  K_COPY,  K_PAST,  K_REDO,                       K_REDO,  K_PAST,  K_COPY,   K_CUT,  K_UNDO, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,  O_LGUI,  O_LALT,  O_LCTL,  O_LSFT, XXXXXXX,                      XXXXXXX,  O_LSFT,  O_LCTL,  O_LALT,  O_LGUI, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______,  K_UNDO,   K_CUT,  K_COPY,  K_PAST,  K_REDO,                       K_REDO,  K_PAST,  K_COPY,   K_CUT,  K_UNDO, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_BTN3, KC_BTN2, KC_BTN1,    KC_BTN1, KC_BTN2, KC_BTN3
+                                      //`--------------------------'  `--------------------------'
+  )
 /*
   // Template for new layer
     [LAYER_X] = LAYOUT_split_3x6_3(
