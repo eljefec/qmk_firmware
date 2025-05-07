@@ -54,7 +54,7 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define LT_SPCNV LT(LAYER_NAV, KC_SPC)
 #define LT_BSPC LT(LAYER_NUM, KC_BSPC)
 #define LT_TAB LT(LAYER_MOS, KC_TAB)
-#define LT_ENT LT(LAYER_SYM, KC_ENT)
+#define LT_SYM LT(LAYER_SYM, KC_TAB)
 #define LT_DEL LT(LAYER_FUN, KC_DEL)
 #define LT_SPCNM LT(LAYER_NUM, KC_SPC)
 
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        O_LALT,  BUTT_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, BUTT_SL, CT_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           MO_MED,  LT_TAB,LT_SPCNV,   LT_SPCNM,  MO_SYM,  MO_FUN
+                                           MO_MED,  LT_TAB,LT_SPCNV,   LT_SPCNM,  LT_SYM,  MO_FUN
                                       //`--------------------------'  `--------------------------'
   ),
 
