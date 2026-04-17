@@ -143,6 +143,10 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
     #define WN_UP   G(KC_UP)
     #define WN_DOWN G(KC_DOWN)
 #endif
+#define CG_1 C(G(KC_1))
+#define CG_2 C(G(KC_2))
+#define CG_3 C(G(KC_3))
+#define CG_4 C(G(KC_4))
 
 // Home row mods for Colemak-DH
 #define G_MT_A GUI_T(KC_A)
@@ -216,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,     O_A,     O_R,     O_S,     O_T, XXXXXXX,                      XXXXXXX, KC_WH_D, KC_MS_U, KC_WH_U, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, _______,
+      XXXXXXX,    CG_1,    CG_2,    CG_3,    CG_4, XXXXXXX,                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    KC_BTN1, KC_BTN2, KC_BTN3
                                       //`--------------------------'  `--------------------------'
@@ -252,7 +256,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,                      XXXXXXX,     O_N,     O_E,     O_I,     O_O, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+      XXXXXXX, KC_PIPE, KC_EXLM,   KC_AT, KC_HASH, KC_TILD,                      XXXXXXX,    CG_1,    CG_2,    CG_3,    CG_4, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LPRN, KC_RPRN, KC_UNDS,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
