@@ -47,6 +47,15 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
     };
 
 // Composite keys
+#ifdef IS_MAC
+    #define N_WIN G(KC_GRV)
+    #define P_WIN G(S(KC_GRV))
+    #define PR_SCR G(S(KC_5))
+#else
+    #define N_WIN A(KC_GRV)
+    #define P_WIN A(S(KC_GRV))
+    #define PR_SCR KC_PSCR
+#endif
 #define N_TB C(KC_TAB)
 #define P_TB RCS(KC_TAB)
 #define G_LEFT G(KC_LEFT)
@@ -218,7 +227,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,     O_A,     O_R,     O_S,     O_T, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX,  KC_APP,    P_TB,    N_TB, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, XXXXXXX,
+      _______,   P_WIN,   N_WIN,    P_TB,    N_TB,  KC_APP,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -230,7 +239,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL,                      XXXXXXX,     O_N,     O_E,     O_I,     O_O, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_BSLS,    KC_1,    KC_2,    KC_3,  KC_GRV,                      XXXXXXX,    P_TB,    N_TB, XXXXXXX, XXXXXXX, _______,
+      XXXXXXX, KC_BSLS,    KC_1,    KC_2,    KC_3,  KC_GRV,                       KC_APP,    P_TB,    N_TB,   P_WIN,   N_WIN, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            KC_DOT,    KC_0, KC_MINS,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -250,7 +259,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LAYER_FUN] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______,  KC_F12,   KC_F7,   KC_F8,   KC_F9, KC_PSCR,                      XXXXXXX,  DF_MED,  DF_FUN,  DF_COL, KC_VOLD, KC_VOLU,
+      _______,  KC_F12,   KC_F7,   KC_F8,   KC_F9,  PR_SCR,                      XXXXXXX,  DF_MED,  DF_FUN,  DF_COL, KC_VOLD, KC_VOLU,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_CAPS,                      XXXXXXX,     O_N,     O_E,     O_I,     O_O, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
