@@ -132,10 +132,10 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 
 // Window management
 #ifdef IS_MAC
-    #define WN_L    C(G(A(KC_LEFT)))
-    #define WN_R    C(G(A(KC_RIGHT)))
-    #define WN_UP   C(G(A(KC_UP)))
-    #define WN_DOWN C(G(A(KC_DOWN)))
+    #define WN_L    C(G(A(KC_J)))
+    #define WN_R    C(G(A(KC_Y)))
+    #define WN_UP   C(G(A(KC_U)))
+    #define WN_DOWN C(G(A(KC_L)))
 #else
     #define WN_L    G(KC_LEFT)
     #define WN_R    G(KC_RIGHT)
