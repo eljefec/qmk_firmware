@@ -72,6 +72,7 @@ const char *LAYER_NAMES[LAYER_COUNT] = {
 #define LT_SYM LT(LAYER_SYM, KC_TAB)
 #define LT_DEL LT(LAYER_FUN, KC_DEL)
 #define LT_SPCNM LT(LAYER_NUM, KC_SPC)
+#define CTRL_C C(KC_C)
 
 // Give thumbs rest
 #define MO_MED MO(LAYER_MED)
@@ -273,7 +274,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______,  K_UNDO,   K_CUT,  K_COPY,  K_PAST,  K_REDO,                       K_REDO,  K_PAST,  K_COPY,   K_CUT,  K_UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,     O_A,     O_R,     O_S,     O_T, XXXXXXX,                      XXXXXXX,     O_N,     O_E,     O_I,     O_O, XXXXXXX,
+      _______,     O_A,     O_R,     O_S,     O_T,  CTRL_C,                       CTRL_C,     O_N,     O_E,     O_I,     O_O, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,  K_UNDO,   K_CUT,  K_COPY,  K_PAST,  K_REDO,                       K_REDO,  K_PAST,  K_COPY,   K_CUT,  K_UNDO, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
